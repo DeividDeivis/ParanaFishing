@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class FishingSystem : MonoBehaviour
 {
+
+
+    private InputSystem_Actions m_Inputs;
+
+    private void Awake()
+    {
+        m_Inputs = new InputSystem_Actions();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

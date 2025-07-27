@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FishInfo", menuName = "Fish Info Assets/Create FishInfo")]
+[CreateAssetMenu(fileName = "FishInfo", menuName = "Fishing Game Assets/Create FishInfo")]
 public class FishInfo : ScriptableObject
 {
     [SerializeField] private Sprite _sprite;
