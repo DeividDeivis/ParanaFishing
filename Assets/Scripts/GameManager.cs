@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameSettings _settings;
+    public GameSettings _settings;
 
     #region Singleton
     private static GameManager _instance;

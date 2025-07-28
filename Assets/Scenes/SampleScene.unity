@@ -991,6 +991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031bb36f50b399e4f839a6f968cad012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Rod: {fileID: 1906810553}
+  minFishingRange: 0
+  maxFishingRange: 0
+  minShootRange: 0
 --- !u!1 &967178055
 GameObject:
   m_ObjectHideFlags: 0
