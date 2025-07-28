@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class FishingSystem : MonoBehaviour
 {
-
+    [SerializeField] private float minFishingRange;
+    [SerializeField] private float maxFishingRange;
+    [SerializeField] private float minShootRange;
 
     private InputSystem_Actions m_Inputs;
 

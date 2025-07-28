@@ -2,14 +2,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameSettings _settings;
+
+    #region Singleton
+    private static GameManager _instance;
+    public static GameManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<GameManager>();
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
+    }
+    #endregion
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }

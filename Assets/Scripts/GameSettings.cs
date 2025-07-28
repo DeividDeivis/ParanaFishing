@@ -10,4 +10,10 @@ public class GameSettings : ScriptableObject
     public float MaxShootRange => maxShootRange;
     [SerializeField] private float powerBarSpeed;
     public float PowerBarSpeed => powerBarSpeed;
+
+    [Header("Fish Groups Settings")]
+    [SerializeField] private float minFishGroup;
+    public float MinFishGroup => minFishGroup;
+    [SerializeField] private float maxFishGroup;
+    public float MaxFishGroup => minFishGroup;
 }
