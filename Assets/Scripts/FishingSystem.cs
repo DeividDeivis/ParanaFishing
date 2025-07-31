@@ -24,4 +24,9 @@ public class FishingSystem : MonoBehaviour
     {
         
     }
+
+    private void ShootBait() 
+    {
+        
+    }
 }
