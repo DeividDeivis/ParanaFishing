@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Game Settings", menuName = "Fishing Game Assets/Create Game Settings")]
 public class GameSettings : ScriptableObject
 {
+    [Header("Player Settings")]
+    [SerializeField] private float playerRotatioSpeed;
+    public float RotatioSpeed => playerRotatioSpeed;
+
     [Header("Shoot Settings")]
     [SerializeField] private float minShootRange;
     public float MinShootRange => minShootRange;
