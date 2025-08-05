@@ -5,15 +5,24 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Slider powerBar;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    #region Singleton
+    private static UIController _instance;
+    public static UIController instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<UIController>();
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
     }
+    #endregion
 
-    // Update is called once per frame
-    void Update()
+    public void SetPowerBar(float value) 
     {
-        
+        powerBar.value = value;
     }
 }

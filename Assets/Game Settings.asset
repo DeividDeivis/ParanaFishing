@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b238d0e4fcd6ed4282942436e981138, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
+  playerRotatioSpeed: 0
   minShootRange: 3
-  maxShootRange: 9
-  powerBarSpeed: 2
-  minFishGroup: 3
+  maxShootRange: 20
+  powerBarSpeed: 5
+  minFishGroup: 1
   maxFishGroup: 5
+  fishingRange: 1
+  fishesInGame:
+  - {fileID: 11400000, guid: 6d3c73bef91f7734ebd99b32c0f1ebdc, type: 2}
+  - {fileID: 11400000, guid: 93ef64f14fafc4541ae8c73f71dcd624, type: 2}
