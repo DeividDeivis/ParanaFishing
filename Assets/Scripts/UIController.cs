@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Slider powerBar;
+    [SerializeField] private List<UISection> m_UISections;
 
     #region Singleton
     private static UIController _instance;
@@ -21,8 +23,12 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+
+    #region Fishing UI
+    [SerializeField] private Slider powerBar;
     public void SetPowerBar(float value) 
     {
         powerBar.value = value;
     }
+    #endregion
 }
