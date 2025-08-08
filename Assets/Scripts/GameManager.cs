@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameSettings _settings;
+    public StateController _states;
 
     #region Singleton
     private static GameManager _instance;
@@ -23,6 +24,6 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _states.SetState(new MenuState());
     }
 }

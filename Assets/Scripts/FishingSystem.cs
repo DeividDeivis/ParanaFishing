@@ -14,17 +14,8 @@ public class FishingSystem : MonoBehaviour
     private bool shootPressed = false;
     private bool readInput = true;
 
-    private InputSystem_Actions m_Inputs;
-
     private void Awake()
     {
-        //m_Inputs = new InputSystem_Actions();
-
-        //m_Inputs.Player.Jump.started += ctx => CheckBait();
-
-        //m_Inputs.Player.Jump.started += ctx => shootPressed = true;
-        //m_Inputs.Player.Jump.canceled += ctx => shootPressed = false;
-
         minFishingRange = GameManager.instance._settings.MinShootRange;
         maxFishingRange = GameManager.instance._settings.MaxShootRange;
         shootSpeed = GameManager.instance._settings.PowerBarSpeed;
@@ -38,13 +29,13 @@ public class FishingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && readInput)        
+        /*if (Input.GetKeyDown(KeyCode.Space) && readInput)        
             CheckBait();
                  
         if (Input.GetKey(KeyCode.Space))
             shootPressed = true;
         if (Input.GetKeyUp(KeyCode.Space))
-            shootPressed = false;
+            shootPressed = false;*/
     }
 
     private void CheckBait() 

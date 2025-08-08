@@ -3,12 +3,14 @@ using UnityEngine;
 public class UISection : MonoBehaviour
 {
     public string SectionID;
+    public GameObject SectionContainer;
+
     public virtual void OnSectionIN() 
     {
-        gameObject.SetActive(true);
+        SectionContainer.SetActive(true);
     }
     public virtual void OnSectionOUT() 
     {
-        gameObject.SetActive(false);
+        SectionContainer.SetActive(false);
     }
 }

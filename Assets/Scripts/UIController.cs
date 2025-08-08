@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,4 +32,18 @@ public class UIController : MonoBehaviour
         powerBar.value = value;
     }
     #endregion
+
+    public UISection GetUI(string id) 
+    {
+        if (m_UISections.Exists(x => x.SectionID.Equals(id)))
+        {
+            UISection ui = m_UISections.First(x => x.SectionID.Equals(id));
+            return ui;
+        }
+        else 
+        {
+            Debug.LogError($"UI Sections don`t containt {id}");
+            return null;
+        }
+    }
 }

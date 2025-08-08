@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class PlaceSelectionState : IState
+public class PlaceSelectionState : State, IState
 {
-    public void OnStateEnter()
+    public override void OnStateEnter()
     {
         
     }
 
-    public void OnStateUpdate()
+    public override void OnStateUpdate()
     {
         
     }
 
-    public void OnStateExit()
+    public override void OnStateExit()
     {
         
     } 
