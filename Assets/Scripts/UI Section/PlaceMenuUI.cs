@@ -1,0 +1,18 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlaceMenuUI : UISection
+{
+    [SerializeField] private Image m_BG;
+
+    public override void OnSectionIN()
+    {
+        base.OnSectionIN();
+    }
+
+    public override void OnSectionOUT()
+    {
+        base.OnSectionOUT();
+    }
+}

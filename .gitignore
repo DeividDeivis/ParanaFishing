@@ -97,3 +97,38 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# macOS Specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+report.xml
+Thumbs.db.meta
+
+# JetBrains
+/.idea/
+.idea/**
+
+# Asset Hunter build info
+*.ahbuildinfo
+
+# FMOD
+fmod.log
+fmod_editor.log
+/[Aa]ssets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+/[Aa]ssets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+
+/[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
+
+# Ignore FMOD Studio's generated cache, user, and unsaved folders within the FMOD project itself
+# (if the FMOD project is within your Git repository)
+.cache/
+.user/
+.unsaved/
+
+# Ignore the FMOD cache folder generated in the Unity project
+/[Aa]ssets/Plugins/FMOD/Cache/*
