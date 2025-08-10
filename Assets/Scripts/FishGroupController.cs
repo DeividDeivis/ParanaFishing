@@ -10,24 +10,25 @@ public class FishGroupController : MonoBehaviour
     void Start()
     {
         FishingRodController.OnBaitInWater += CheckFishingChances;
+        //BuildGroup();
     }
 
     private void CheckFishingChances(Vector3 baitPos)
     {
-        float range = GameManager.instance._settings.FishingRange;
+        /*float range = GameManager.instance.Settings.FishingRange;
         float currentDistance = Vector3.Distance(transform.position, baitPos);
 
         if (currentDistance < range)
-        {
+        {*/
             BuildGroup();
-        }
+        /*}
         else
-            return;
+            return;*/
     }
 
     private void BuildGroup() 
     {
-        var settings = GameManager.instance._settings;
+        var settings = GameManager.instance.Settings;
         int fishAmount = UnityEngine.Random.Range(settings.MinFishGroup, settings.MaxFishGroup + 1);
 
         var randomFishList = new List<FishInfo>(settings.FishesInfo);
@@ -40,5 +41,9 @@ public class FishGroupController : MonoBehaviour
         }
     }
 
-
+    public FishInfo GetRandomFish() 
+    {
+        int randomIndex = UnityEngine.Random.Range(0, fishInGroup.Count);
+        return fishInGroup[randomIndex];
+    }
 }

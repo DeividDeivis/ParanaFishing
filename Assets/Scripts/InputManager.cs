@@ -15,22 +15,6 @@ public class InputManager : MonoBehaviour
     public static Action InteractTap;
     public static Action<bool> InteractPress;
 
-    #region Singleton
-    private static InputManager _instance;
-    public static InputManager instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindFirstObjectByType<InputManager>();
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-            return _instance;
-        }
-    }
-    #endregion
-
     void OnEnable()
     {
         /// Enable actions as part of enabling this behavior.

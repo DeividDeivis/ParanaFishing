@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     [Header("Player Settings")]
-    [SerializeField] private float playerRotatioSpeed;
-    public float RotatioSpeed => playerRotatioSpeed;
+    [SerializeField] private float playerRotationSpeed;
+    public float RotationSpeed => playerRotationSpeed;
 
     [Header("Shoot Settings")]
     [SerializeField] private float minShootRange;

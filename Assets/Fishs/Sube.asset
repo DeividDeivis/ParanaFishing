@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
+  m_Name: Sube
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: -4743730473268913974, guid: 4a070b467fbcc854eadf376ea03e7c89, type: 3}
+  _name: Sube
+  _chanceToAppearInGroup: 0
+  _baitsModify: []

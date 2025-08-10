@@ -1,9 +1,16 @@
 using UnityEngine;
+using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-    public GameSettings _settings;
-    public StateController _states;
+    [SerializeField] private GameSettings _settings;
+    public GameSettings Settings => _settings;
+    [SerializeField] private StateController _states;
+    public StateController States => _states;
+
+    [SerializeField]private EventReference BGMusicEvent;
+    private FMOD.Studio.EventInstance musicState;
+
 
     #region Singleton
     private static GameManager _instance;
@@ -25,5 +32,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _states.SetState(new MenuState());
+
+        musicState = RuntimeManager.CreateInstance(BGMusicEvent);
+        musicState.start();
+    }
+
+    public void SetMusicState(int value)
+    {
+        musicState.setParameterByName("Scene", value);
     }
 }

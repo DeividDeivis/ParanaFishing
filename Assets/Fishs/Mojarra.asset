@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Mojarra
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 911326281798200701, guid: 8e4c5799125b58d488cc2e33932f6a73, type: 3}
+  _sprite: {fileID: -6295677708421135333, guid: 722b11cbfd42b9945bbaac4960143092, type: 3}
   _name: Mojarra
   _chanceToAppearInGroup: 50
   _baitsModify:

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FishingSystem : MonoBehaviour
 {
@@ -8,17 +10,20 @@ public class FishingSystem : MonoBehaviour
     private float maxFishingRange;
     private float shootSpeed;
 
-    private float rotatioSpeed;
+    public bool baitInWater = false;
+    public bool shootPressed = false;
+    public bool catchFish = false;
+    public static Action OnFishBait;
 
-    private bool baitInWater = false;
-    private bool shootPressed = false;
-    private bool readInput = true;
+    public Action<float> FishingProgress;
+    private float strain = 0;
+    public Action<bool> FishingComplete;
 
     private void Awake()
     {
-        minFishingRange = GameManager.instance._settings.MinShootRange;
-        maxFishingRange = GameManager.instance._settings.MaxShootRange;
-        shootSpeed = GameManager.instance._settings.PowerBarSpeed;
+        minFishingRange = GameManager.instance.Settings.MinShootRange;
+        maxFishingRange = GameManager.instance.Settings.MaxShootRange;
+        shootSpeed = GameManager.instance.Settings.PowerBarSpeed;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,40 +32,15 @@ public class FishingSystem : MonoBehaviour
         m_Rod = GetComponentInChildren<FishingRodController>();
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Space) && readInput)        
-            CheckBait();
-                 
-        if (Input.GetKey(KeyCode.Space))
-            shootPressed = true;
-        if (Input.GetKeyUp(KeyCode.Space))
-            shootPressed = false;*/
-    }
-
-    private void CheckBait() 
-    {
-        if (shootPressed == true) return;
-
-        if (baitInWater) 
-        {
-            ReturnBait();
-        }
-        else
-        {
-            ShootBait();
-        }
-    }
-
-    private void ShootBait() 
+    public void ShootBait() 
     {
         shootPressed = true;
+        catchFish = false;
         StartCoroutine(ShootBaitMiniGame());
     }
 
     private IEnumerator ShootBaitMiniGame() 
     {
-        readInput = false;
         bool loop = false;
         float currentForce = 0f;
 
@@ -89,12 +69,77 @@ public class FishingSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         baitInWater = true;
-        readInput = true;
     }
 
-    private void ReturnBait() 
+    public void ReturnBait() 
     {
         m_Rod.ReturnBait();
         baitInWater = false;
+    }
+
+    public void WaitToCatch() 
+    {
+        StartCoroutine(FishingMiniGame());
+    }
+
+    private IEnumerator FishingMiniGame() 
+    {
+        while (!baitInWater) 
+        {
+            yield return null;
+        }
+
+        while (!catchFish)
+        {
+            float timeToWait = Random.Range(1, 3);
+            yield return new WaitForSeconds(timeToWait);
+
+            float cathChance = Random.Range(0, 100);
+            Debug.Log($"FISH CATH CHANCE: {cathChance}");
+            if (cathChance <= 15) 
+            {
+                catchFish = true;
+                OnFishBait?.Invoke();
+                Debug.Log("FISH IN BAIT");
+            }
+        }
+    }
+
+    public void CatchAnim() 
+    {
+        m_Rod.PushAnim();
+    }
+
+    public void PullFishingRod()
+    {
+        m_Rod.PullAnim();
+        strain -= .15f;
+    }
+
+    public void CatchFishMiniGame() 
+    {
+        m_Rod.PushAnim();
+        StartCoroutine(CatchingFish());
+    }
+
+    private IEnumerator CatchingFish()
+    {
+        float progression = 0;
+        strain = 0;
+        while (strain < 1 && progression < 100) 
+        {
+            strain += .1f;
+            progression += 1;
+            FishingProgress?.Invoke(strain);
+
+            if (strain >= 1)
+                FishingComplete?.Invoke(false);
+            else if(progression >= 100)
+                FishingComplete?.Invoke(true);
+
+            yield return new WaitForSeconds(.15f);
+        }
+
+        m_Rod.ReturnBait();
     }
 }

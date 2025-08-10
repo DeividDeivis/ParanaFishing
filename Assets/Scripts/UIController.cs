@@ -24,6 +24,15 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    private void Awake()
+    {
+        m_UISections = new List<UISection>();
+        m_UISections = GetComponents<UISection>().ToList();
+        foreach (var _ui in m_UISections)
+        {
+            _ui.OnSectionOUT();
+        }
+    }
 
     #region Fishing UI
     [SerializeField] private Slider powerBar;

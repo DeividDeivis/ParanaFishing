@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class MenuState : State, IState
 {
@@ -8,6 +9,8 @@ public class MenuState : State, IState
         _UI.OnSectionIN();
 
         InputManager.InteractTap += StartGame;
+
+        GameManager.instance.SetMusicState(0);
     }
 
     public override void OnStateUpdate()
@@ -23,6 +26,6 @@ public class MenuState : State, IState
 
     private void StartGame() 
     {
-        GameManager.instance._states.SetState(new PlaceSelectionState());
+        GameManager.instance.States.SetState(new PlaceSelectionState());
     }
 }

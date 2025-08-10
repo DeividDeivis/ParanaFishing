@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class FishingRodController : MonoBehaviour
 {
@@ -32,7 +31,7 @@ public class FishingRodController : MonoBehaviour
             .Append(m_Rod.DOLocalRotate(new Vector3(-30,0,0), .5f).SetLoops(2, LoopType.Yoyo).OnComplete(()=> m_Bait.transform.parent = null))
             .Append(m_Rod.DOLocalRotate(new Vector3(15, 0, 0), .5f))
             .Join(m_Bait.DOLocalMoveZ(distance, 3f))            
-            .Join(m_Bait.DOLocalMoveY(-1.47f, 1f).SetDelay(2f))
+            .Join(m_Bait.DOLocalMoveY(-1.47f, 2f).SetDelay(1f))
             .OnComplete(()=> OnBaitInWater?.Invoke(m_Bait.transform.position));
     }
 
@@ -46,5 +45,22 @@ public class FishingRodController : MonoBehaviour
                 m_Bait.transform.SetParent(m_Top);
                 m_Bait.transform.localPosition = Vector3.zero;
             }));          
+    }
+
+    public void PushAnim() 
+    {
+        m_Bait.transform.parent = null;
+        Sequence shootAnim = DOTween.Sequence().SetEase(Ease.Linear);
+        shootAnim
+            .Append(m_Rod.DOLocalRotate(new Vector3(15, 0, 0), .3f));
+    }
+
+    public void PullAnim()
+    {
+        m_Bait.transform.parent = null;
+        Sequence ReturnAnim = DOTween.Sequence().SetEase(Ease.Linear);
+        ReturnAnim
+            .Append(m_Rod.DOLocalRotate(new Vector3(-30, 0, 0), .3f))
+            .Append(m_Rod.DOLocalRotate(new Vector3(0, 0, 0), 1f));
     }
 }
