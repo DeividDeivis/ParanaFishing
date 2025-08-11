@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public StateController States => _states;
 
     [SerializeField]private EventReference BGMusicEvent;
-    private FMOD.Studio.EventInstance musicState;
+    private EventInstance musicState;
 
 
     #region Singleton
@@ -40,5 +41,6 @@ public class GameManager : MonoBehaviour
     public void SetMusicState(int value)
     {
         musicState.setParameterByName("Scene", value);
+        //RuntimeManager.StudioSystem.setParameterByName("Scene", value);
     }
 }
