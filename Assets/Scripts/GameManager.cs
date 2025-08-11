@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private StateController _states;
     public StateController States => _states;
 
-    [SerializeField]private EventReference BGMusicEvent;
+    [SerializeField] private EventReference BGMusicEvent;
     private EventInstance musicState;
 
 
@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour
 
     public void SetMusicState(int value)
     {
-        musicState.setParameterByName("Scene", value);
-        //RuntimeManager.StudioSystem.setParameterByName("Scene", value);
+        //musicState.setParameterByName("Scene", value); // Local Parameter
+        RuntimeManager.StudioSystem.setParameterByName("Scene", value); // Global Parameter
+
+        float currentValue = 0;
+        RuntimeManager.StudioSystem.getParameterByName("Scene", out currentValue);
+        Debug.Log($"<color=cyan>Music Parameter change to: {currentValue}</color>");
     }
 }
