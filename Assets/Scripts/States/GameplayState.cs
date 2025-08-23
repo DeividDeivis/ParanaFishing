@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using FMODUnity;
 
 public class GameplayState : State, IState
 {
@@ -10,45 +9,47 @@ public class GameplayState : State, IState
         _UI = UIController.instance.GetUI("Gameplay");
         _UI.OnSectionIN();
 
-        GameManager.instance.SetMusicState(1);
+        AudioManager.instance.SetMusicState(1); 
 
-        SetSubState(new MoveSubState(_UI));
+        InputManager._.StartReadInput("Interact", SubStateInteractTap);
+        InputManager._.StartReadInput("Interact", SubStateInteractPress);
+        InputManager._.StartReadInput("Left", SubStateLeftTap);
+        InputManager._.StartReadInput("Left", SubStateLeftPress);
+        InputManager._.StartReadInput("Right", SubStateRightTap);
+        InputManager._.StartReadInput("Right", SubStateRightPress);
 
-        InputManager.InteractTap += SubStateInteractTap;
-        InputManager.InteractPress += SubStateInteractPress;
-        InputManager.LeftTap += SubStateLeftTap;
-        InputManager.LeftPress += SubStateLeftPress;
-        InputManager.RightTap += SubStateRightTap;
-        InputManager.RightPress += SubStateRightPress;
-
-        SubState.NextSubState += SetSubState;
+        FishingSystem.instance.ShowRod(() => 
+        { 
+            SetSubState(new MoveSubState(_UI));
+            SubState.NextSubState += SetSubState;
+        });
     }
 
     public override void OnStateUpdate()
     {
-        
+        currentSubState?.OnSubState();
     }
 
     public override void OnStateExit()
     {
-        InputManager.InteractTap -= SubStateInteractTap;
-        InputManager.InteractPress -= SubStateInteractPress;
-        InputManager.LeftTap -= SubStateLeftTap;
-        InputManager.LeftPress -= SubStateLeftPress;
-        InputManager.RightTap -= SubStateRightTap;
-        InputManager.RightPress -= SubStateRightPress;
+        InputManager._.StopReadInput("Interact", SubStateInteractTap);
+        InputManager._.StopReadInput("Interact", SubStateInteractPress);
+        InputManager._.StopReadInput("Left", SubStateLeftTap);
+        InputManager._.StopReadInput("Left", SubStateLeftPress);
+        InputManager._.StopReadInput("Right", SubStateRightTap);
+        InputManager._.StopReadInput("Right", SubStateRightPress);
 
         SubState.NextSubState -= SetSubState;
 
         _UI.OnSectionOUT();
     }
 
-    private void SubStateInteractTap() { currentSubState.OnInteractTap(); }
-    private void SubStateInteractPress(bool press) { currentSubState.OnInteractPress(press); }
-    private void SubStateLeftTap() { currentSubState.OnLeftTap(); }
-    private void SubStateLeftPress(bool press) { currentSubState.OnLeftPress(press); }
-    private void SubStateRightTap() { currentSubState.OnRightTap(); }
-    private void SubStateRightPress(bool press) { currentSubState.OnRightPress(press); }
+    private void SubStateInteractTap() { currentSubState?.OnInteractTap(); }
+    private void SubStateInteractPress(bool press) { currentSubState?.OnInteractPress(press); }
+    private void SubStateLeftTap() { currentSubState?.OnLeftTap(); }
+    private void SubStateLeftPress(bool press) { currentSubState?.OnLeftPress(press); }
+    private void SubStateRightTap() { currentSubState?.OnRightTap(); }
+    private void SubStateRightPress(bool press) { currentSubState?.OnRightPress(press); }
 
     private void SetSubState(SubState sub) 
     {

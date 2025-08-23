@@ -7,6 +7,16 @@ public class GameSettings : ScriptableObject
     [Header("Player Settings")]
     [SerializeField] private float playerRotationSpeed;
     public float RotationSpeed => playerRotationSpeed;
+    [SerializeField] private float maxRotationAngle;
+    public float MaxRotationAngle => maxRotationAngle;
+
+    [Header("Gameplay Animation Settings")]
+    [SerializeField] private float initialPlayerPos;
+    public float InitialPlayerPos => initialPlayerPos;
+    [SerializeField] private float finishPlayerPos;
+    public float FinishPlayerPos => finishPlayerPos;
+    [SerializeField] private float playerMovAnimSpeed;
+    public float PlayerMovAnimSpeed => playerMovAnimSpeed;
 
     [Header("Shoot Settings")]
     [SerializeField] private float minShootRange;

@@ -21,7 +21,7 @@ public class FishingSubState : SubState
 
         fishingSystem.CatchFishMiniGame();
 
-        GameManager.instance.SetMusicState(2);
+        AudioManager.instance.SetMusicState(2);
     }
 
     public override void OnInteractTap()
@@ -60,14 +60,14 @@ public class FishingSubState : SubState
             var fish = fishGroup.GetRandomFish();
             _ui.GetComponent<FishingGameUI>().ShowFishInfo(fish);
 
-            GameManager.instance.SetMusicState(3);
+            AudioManager.instance.SetMusicState(3);
         }
         else 
         {
             Debug.Log("LOSE");
             _ui.GetComponent<FishingGameUI>().ShowFailed();
 
-            GameManager.instance.SetMusicState(4);
+            AudioManager.instance.SetMusicState(4);
         }
 
         fishingComplete = true;

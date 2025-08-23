@@ -114,7 +114,7 @@ MonoBehaviour:
   Path: ParanaFishing/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638905247164242319
+  lastModified: 638902853318192643
   FileSizes:
   - Name: Desktop
     Value: 1194
@@ -134,7 +134,7 @@ MonoBehaviour:
   Path: ParanaFishing/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638905247164221579
+  lastModified: 638902853318171972
   FileSizes:
   - Name: Desktop
     Value: 2953760
@@ -220,7 +220,7 @@ MonoBehaviour:
   - {fileID: -2540364182192752453}
   StringsBanks:
   - {fileID: -3893331688056122899}
-  cacheTime: 638905247164242319
+  cacheTime: 638902853318192643
   cacheVersion: 131625
 --- !u!114 &669061792399659561
 MonoBehaviour:

@@ -9,6 +9,8 @@ public class SubState
         _ui = ui; 
     }
     public virtual void SetSubState() { }
+
+    public virtual void OnSubState() { }
     public virtual void OnInteractTap() { }
     public virtual void OnInteractPress(bool isPressed) { }
     public virtual void OnRightTap() { }
