@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShootSubState : SubState
@@ -11,7 +12,7 @@ public class ShootSubState : SubState
 
     public override void SetSubState()
     {
-        fishingSystem = GameObject.FindFirstObjectByType<FishingSystem>();
+        fishingSystem = FishingSystem.instance;
         fishingSystem.ShootBait();
     }
 
@@ -20,8 +21,14 @@ public class ShootSubState : SubState
         fishingSystem.shootPressed = isPressed;
         if (!isPressed) 
         {
-            _ui.GetComponent<FishingGameUI>().SetPowerBar(0);
-            NextSubState.Invoke(new WaitSubState(_ui));
+            FishingSystem.OnBaitInWater += BaitInWater;
         }           
+    }
+
+    private void BaitInWater() 
+    {
+        FishingSystem.OnBaitInWater -= BaitInWater;
+        _ui.GetComponent<FishingGameUI>().SetPowerBar(0);
+        NextSubState.Invoke(new WaitSubState(_ui));
     }
 }

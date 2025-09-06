@@ -30,7 +30,7 @@ public class FishingRodController : MonoBehaviour
         shootAnim
             .Append(m_Rod.DOLocalRotate(new Vector3(-30,0,0), .5f).SetLoops(2, LoopType.Yoyo).OnComplete(()=> m_Bait.transform.parent = null))
             .Append(m_Rod.DOLocalRotate(new Vector3(15, 0, 0), .5f))
-            .Join(m_Bait.DOLocalMoveZ(distance, 3f))            
+            .Join(m_Bait.DOLocalMoveZ(-distance, 3f))            
             .Join(m_Bait.DOLocalMoveY(-1.47f, 2f).SetDelay(1f))
             .OnComplete(()=> OnBaitInWater?.Invoke(m_Bait.transform.position));
     }

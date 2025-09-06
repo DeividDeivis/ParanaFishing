@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b238d0e4fcd6ed4282942436e981138, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  playerRotationSpeed: 200
+  playerRotationSpeed: 50
+  maxRotationAngle: 31
+  initialPlayerPos: 2.5
+  finishPlayerPos: -2.33
+  playerMovAnimSpeed: 3
   minShootRange: 3
   maxShootRange: 20
-  powerBarSpeed: 5
+  powerBarSpeed: 1
   minFishGroup: 3
   maxFishGroup: 6
   fishingRange: 1

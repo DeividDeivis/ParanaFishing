@@ -4,6 +4,9 @@ public class MoveSubState : SubState
 {
     private Transform player;
     private float rotationSpeed;
+    private float rotationAngle;
+    private bool rightPress;
+    private bool leftPress;
     private bool shoot;
 
     public MoveSubState(UISection ui) : base(ui)
@@ -13,28 +16,53 @@ public class MoveSubState : SubState
 
     public override void SetSubState()
     {
-        player = GameObject.FindFirstObjectByType<FishingSystem>().transform;
+        player = FishingSystem.instance.transform;
         rotationSpeed = GameManager.instance.Settings.RotationSpeed;
+        rotationAngle = GameManager.instance.Settings.MaxRotationAngle;
+        rightPress = false;
+        leftPress = false;
         shoot = false;
 
         _ui.GetComponent<FishingGameUI>().SetPowerBar(0);
     }
 
+    public override void OnSubState()
+    {
+        if (shoot) return;
+
+        // Mathf.Clamp() don`t found with Rotate()
+        /*if (leftPress)
+            player.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.Self);
+        else if (rightPress)
+            player.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);*/
+
+        if (leftPress)
+            player.eulerAngles -= new Vector3(0, rotationSpeed * Time.deltaTime, 0);
+        else if (rightPress)
+            player.eulerAngles += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
+
+        if (leftPress || rightPress) 
+        {          
+            float YRot = Mathf.Clamp(player.eulerAngles.y, 180 - rotationAngle, 180 + rotationAngle);
+            //Debug.Log($"Local Euler: {player.localEulerAngles.y}, Rotation {player.transform.rotation.y}, Clamp Rot: {YRot}");
+            player.eulerAngles = new Vector3(0, YRot, 0);
+        }     
+    }
+
     public override void OnLeftPress(bool isPressed)
     {
-        if (isPressed && !shoot) 
-            player.Rotate(0, -rotationSpeed * Time.deltaTime, 0);
+        leftPress = isPressed;
     }
 
     public override void OnRightPress(bool isPressed)
     {
-        if (isPressed && !shoot)
-            player.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        rightPress = isPressed;
     }
 
-    public override void OnInteractTap()
+    public override void OnInteractPress(bool isPressed)
     {
-        shoot = true;
-        NextSubState.Invoke(new ShootSubState(_ui));
+        shoot = isPressed;
+        if(shoot) 
+            NextSubState.Invoke(new ShootSubState(_ui));
     }
 }

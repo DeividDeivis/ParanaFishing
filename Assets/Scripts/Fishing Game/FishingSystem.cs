@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class FishingSystem : MonoBehaviour
     private float shootSpeed;
 
     public bool baitInWater = false;
+    public static Action OnBaitInWater;
     public bool shootPressed = false;
     public bool catchFish = false;
     public static Action OnFishBait;
@@ -19,24 +21,56 @@ public class FishingSystem : MonoBehaviour
     private float strain = 0;
     public Action<bool> FishingComplete;
 
+    private Coroutine currentCoroutine;
+
+    #region Singleton
+    private static FishingSystem _instance;
+    public static FishingSystem instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<FishingSystem>();
+                DontDestroyOnLoad(_instance.gameObject);
+            }
+            return _instance;
+        }
+    }
+    #endregion
+
     private void Awake()
     {
         minFishingRange = GameManager.instance.Settings.MinShootRange;
         maxFishingRange = GameManager.instance.Settings.MaxShootRange;
         shootSpeed = GameManager.instance.Settings.PowerBarSpeed;
+
+        m_Rod = GetComponentInChildren<FishingRodController>(true);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void ShowRod(Action onComplete = null) 
     {
-        m_Rod = GetComponentInChildren<FishingRodController>();
+        m_Rod.gameObject.SetActive(true);
+        float PlayerPosZ = GameManager.instance.Settings.FinishPlayerPos;
+        Vector3 playerNewPos = new Vector3(transform.position.x, transform.position.y, PlayerPosZ);
+        transform.DOMove(playerNewPos, GameManager.instance.Settings.PlayerMovAnimSpeed).SetEase(Ease.Linear)
+            .OnComplete(()=> onComplete?.Invoke());
+    }
+
+    public void HideRod() 
+    {
+        m_Rod.gameObject.SetActive(false);
+        float PlayerPosZ = GameManager.instance.Settings.InitialPlayerPos;
+        transform.position = new Vector3(transform.position.x, transform.position.y, PlayerPosZ);   
     }
 
     public void ShootBait() 
     {
         shootPressed = true;
         catchFish = false;
-        StartCoroutine(ShootBaitMiniGame());
+        if (currentCoroutine != null)
+            StopCoroutine(currentCoroutine);
+        currentCoroutine = StartCoroutine(ShootBaitMiniGame());
     }
 
     private IEnumerator ShootBaitMiniGame() 
@@ -69,6 +103,7 @@ public class FishingSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         baitInWater = true;
+        OnBaitInWater?.Invoke();
     }
 
     public void ReturnBait() 
@@ -79,7 +114,9 @@ public class FishingSystem : MonoBehaviour
 
     public void WaitToCatch() 
     {
-        StartCoroutine(FishingMiniGame());
+        if (currentCoroutine != null)
+            StopCoroutine(currentCoroutine);
+        currentCoroutine = StartCoroutine(FishingMiniGame());
     }
 
     private IEnumerator FishingMiniGame() 
@@ -119,7 +156,9 @@ public class FishingSystem : MonoBehaviour
     public void CatchFishMiniGame() 
     {
         m_Rod.PushAnim();
-        StartCoroutine(CatchingFish());
+        if (currentCoroutine != null)
+            StopCoroutine(currentCoroutine);
+        currentCoroutine = StartCoroutine(CatchingFish());
     }
 
     private IEnumerator CatchingFish()
