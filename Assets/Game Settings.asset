@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   playerRotationSpeed: 50
-  maxRotationAngle: 31
+  maxRotationAngle: 90
   initialPlayerPos: 2.5
-  finishPlayerPos: -2.33
+  finishPlayerPos: 1
   playerMovAnimSpeed: 3
   minShootRange: 3
   maxShootRange: 20

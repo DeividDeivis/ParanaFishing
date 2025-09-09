@@ -8,6 +8,8 @@ public class PlaceSelectionState : State, IState
         _UI.OnSectionIN();
 
         InputManager._.StartReadInput("Interact", PlaceConfirmed);
+        InputManager._.StartReadInput("Left", SelectLeft);
+        InputManager._.StartReadInput("Right", SelectRight);
     }
 
     public override void OnStateUpdate()
@@ -24,6 +26,18 @@ public class PlaceSelectionState : State, IState
     private void PlaceConfirmed() 
     {
         GameManager.instance.States.SetState(new WeatherState());
+        AudioManager.instance.PlaySfx("Select");
+    }
+
+    private void SelectRight()
+    {
+        //GameManager.instance.States.SetState(new PlaceSelectionState());
+        AudioManager.instance.PlaySfx("Select");
+    }
+
+    private void SelectLeft()
+    {
+        //GameManager.instance.States.SetState(new PlaceSelectionState());
         AudioManager.instance.PlaySfx("Select");
     }
 }
