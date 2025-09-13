@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   playerRotationSpeed: 50
-  maxRotationAngle: 90
+  maxRotationAngle: 80
   initialPlayerPos: 2.5
   finishPlayerPos: 1
   playerMovAnimSpeed: 3
@@ -26,11 +26,62 @@ MonoBehaviour:
   fishesInGame:
   - {fileID: 11400000, guid: a7f022ab4dea2b941b68d54d2bcd3077, type: 2}
   - {fileID: 11400000, guid: aa1b711f19039ee4ab4e08b7b0315750, type: 2}
+  - {fileID: 11400000, guid: 9e6422a462f0e5e4999ed5ff60ff8dbd, type: 2}
+  - {fileID: 11400000, guid: 01d8ac7e6a8820142b13e24185899d55, type: 2}
+  - {fileID: 11400000, guid: 4c4712df353642d40a8bbb490c6deae5, type: 2}
+  - {fileID: 11400000, guid: e3d200e5a19bb9742842efbbe3f43e2a, type: 2}
   - {fileID: 11400000, guid: 6d3c73bef91f7734ebd99b32c0f1ebdc, type: 2}
   - {fileID: 11400000, guid: e8f935c21c96c0448b0ee292a0963037, type: 2}
   - {fileID: 11400000, guid: 17e4f72981485a74d95eaf128d8e2272, type: 2}
+  - {fileID: 11400000, guid: 9ba8d272bb75b204d95cacd91d59f6c5, type: 2}
   - {fileID: 11400000, guid: 93ef64f14fafc4541ae8c73f71dcd624, type: 2}
   - {fileID: 11400000, guid: f68cf187c705f4a44bc58729eadc5188, type: 2}
+  - {fileID: 11400000, guid: f9a9d16fa2552e04f94c9e73bd1ebb32, type: 2}
+  - {fileID: 11400000, guid: 6611ab706abbe8441bafa5a72d2a39d7, type: 2}
+  - {fileID: 11400000, guid: 5d2b94def2a9d174c9d64c9f09353324, type: 2}
+  - {fileID: 11400000, guid: cb0bd82b3d6ea744d85974686be1e88f, type: 2}
   - {fileID: 11400000, guid: cd3be0129971dc64c8cdf343649ed7a4, type: 2}
   - {fileID: 11400000, guid: 336f0aca7768b6f4aa920ee64512444d, type: 2}
   - {fileID: 11400000, guid: 54276f0c8be0fb74aa8ae0bc070f614a, type: 2}
+  baitsInGame:
+  - m_Sprite: {fileID: 21300000, guid: ecc61708be2a2d64ca6281b0fb3279d8, type: 3}
+    m_Name: Lombriz
+    m_BaitType: 0
+    _baitModify:
+    - FishRarity: 1
+      _chanceBait: 70
+    - FishRarity: 2
+      _chanceBait: 20
+    - FishRarity: 3
+      _chanceBait: 10
+  - m_Sprite: {fileID: 21300000, guid: 7f7b52c3113eea641a218f6c3c0db1ac, type: 3}
+    m_Name: C. Viva
+    m_BaitType: 1
+    _baitModify:
+    - FishRarity: 1
+      _chanceBait: 40
+    - FishRarity: 2
+      _chanceBait: 40
+    - FishRarity: 3
+      _chanceBait: 20
+  - m_Sprite: {fileID: 21300000, guid: 34b848c4d3878b84e8f3022befeb6814, type: 3}
+    m_Name: Carlito'
+    m_BaitType: 2
+    _baitModify:
+    - FishRarity: 1
+      _chanceBait: 20
+    - FishRarity: 2
+      _chanceBait: 30
+    - FishRarity: 3
+      _chanceBait: 50
+  rarityInfos:
+  - rarity: 0
+    points: 0
+  - rarity: 1
+    points: 100
+  - rarity: 2
+    points: 500
+  - rarity: 3
+    points: 1000
+  - rarity: 4
+    points: 5000

@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<AudioManager>();
-                DontDestroyOnLoad(_instance.gameObject);
+                //DontDestroyOnLoad(_instance.gameObject);
             }
             return _instance;
         }

@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class FishingSystem : MonoBehaviour
 {
+    public Transform pivot;
     private FishingRodController m_Rod;
     private float minFishingRange;
     private float maxFishingRange;
@@ -23,6 +24,12 @@ public class FishingSystem : MonoBehaviour
 
     private Coroutine currentCoroutine;
 
+    private FishingInventory m_Inventory;
+    public FishingInventory Inv => m_Inventory;
+    public FishInfo fishCatched;
+
+    [SerializeField] private AnimationSystem fishGraph;
+
     #region Singleton
     private static FishingSystem _instance;
     public static FishingSystem instance
@@ -32,7 +39,7 @@ public class FishingSystem : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<FishingSystem>();
-                DontDestroyOnLoad(_instance.gameObject);
+                //DontDestroyOnLoad(_instance.gameObject);
             }
             return _instance;
         }
@@ -46,6 +53,7 @@ public class FishingSystem : MonoBehaviour
         shootSpeed = GameManager.instance.Settings.PowerBarSpeed;
 
         m_Rod = GetComponentInChildren<FishingRodController>(true);
+        m_Inventory = GetComponent<FishingInventory>();
     }
 
     public void ShowRod(Action onComplete = null) 
@@ -68,6 +76,7 @@ public class FishingSystem : MonoBehaviour
     {
         shootPressed = true;
         catchFish = false;
+        fishCatched = null;
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
         currentCoroutine = StartCoroutine(ShootBaitMiniGame());
@@ -180,5 +189,14 @@ public class FishingSystem : MonoBehaviour
         }
 
         m_Rod.ReturnBait();
+
+        fishGraph.SetGraph(m_Rod.GetBaitPos(), fishCatched);
+        fishGraph.JumpAnim();
+    }
+
+    public void ResetFish() 
+    {
+        fishGraph.transform.position += new Vector3(0, 0, 10);
+        fishGraph.StopAnim();
     }
 }

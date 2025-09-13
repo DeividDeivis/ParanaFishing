@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Libro
   m_EditorClassIdentifier: 
-  _sprite: {fileID: -5359753884664773787, guid: 1652764a1ceb0054588f9f64f6b72cc7, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 1652764a1ceb0054588f9f64f6b72cc7, type: 3}
   _name: Libro Mojado
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 0
+  _spritesAnim:
+  - {fileID: -197545484245669465, guid: c782de47c08b42845a9f4d68efcc18f9, type: 3}
+  _chanceToAppearInGroup: 30

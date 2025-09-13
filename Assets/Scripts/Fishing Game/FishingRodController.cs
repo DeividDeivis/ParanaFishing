@@ -28,11 +28,16 @@ public class FishingRodController : MonoBehaviour
     {
         Sequence shootAnim = DOTween.Sequence().SetEase(Ease.Linear);
         shootAnim
-            .Append(m_Rod.DOLocalRotate(new Vector3(-30,0,0), .5f).SetLoops(2, LoopType.Yoyo).OnComplete(()=> m_Bait.transform.parent = null))
+            .Append(m_Rod.DOLocalRotate(new Vector3(-30,0,0), .5f).SetLoops(2, LoopType.Yoyo).OnComplete(()=>
+                {
+                    //m_Bait.transform.parent = null;
+                    AudioManager.instance.PlaySfx("Shoot");
+                } ))
             .Append(m_Rod.DOLocalRotate(new Vector3(15, 0, 0), .5f))
-            .Join(m_Bait.DOLocalMoveZ(-distance, 3f))            
+            .Join(m_Bait.DOLocalMoveZ(distance, 3f))            
             .Join(m_Bait.DOLocalMoveY(-1.47f, 2f).SetDelay(1f))
             .OnComplete(()=> OnBaitInWater?.Invoke(m_Bait.transform.position));
+
     }
 
     public void ReturnBait() 
@@ -62,5 +67,10 @@ public class FishingRodController : MonoBehaviour
         ReturnAnim
             .Append(m_Rod.DOLocalRotate(new Vector3(-30, 0, 0), .3f))
             .Append(m_Rod.DOLocalRotate(new Vector3(0, 0, 0), 1f));
+    }
+
+    public Vector3 GetBaitPos() 
+    {
+        return m_Bait.position;
     }
 }

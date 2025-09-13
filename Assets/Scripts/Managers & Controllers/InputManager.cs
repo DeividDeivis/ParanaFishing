@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<InputManager>();
-                DontDestroyOnLoad(_instance.gameObject);
+                //DontDestroyOnLoad(_instance.gameObject);
             }
             return _instance;
         }
@@ -48,6 +48,9 @@ public class InputManager : MonoBehaviour
         buttonsInputs.Add(new ButtonInfo("Right", m_Inputs._3Buttons.Right));
         buttonsInputs.Add(new ButtonInfo("Left", m_Inputs._3Buttons.Left));
         buttonsInputs.Add(new ButtonInfo("Interact", m_Inputs._3Buttons.Interact));
+
+        buttonsInputs.Add(new ButtonInfo("Reload", m_Inputs.System.ReloadGame));
+        buttonsInputs.Add(new ButtonInfo("Quit", m_Inputs.System.QuitGame));
     }
 
 
@@ -61,12 +64,13 @@ public class InputManager : MonoBehaviour
         Debug.Log($"Start Read Input {inputName}");
     }
 
-    public void StopReadInput(string inputName, Action onTap)
+    public void StopReadInput(string inputName)
     {
         var input = buttonsInputs.First(btn => btn.BtnName == inputName);
-        input.BtnTap -= onTap;
+        input.BtnTap = null;
+        input.BtnPress = null;
 
-        Debug.Log($"Stpo Read Input {inputName}");
+        Debug.Log($"Stop Read Input {inputName}");
     }
 
     // Press input with boolean
@@ -78,12 +82,23 @@ public class InputManager : MonoBehaviour
         Debug.Log($"Start Read Input {inputName}, OnPress {onPress}");
     }
 
-    public void StopReadInput(string inputName, Action<bool> onPress)
+    /*public void StopReadInput(string inputName)
     {
         var input = buttonsInputs.First(btn => btn.BtnName == inputName);
-        input.BtnPress -= onPress;
+        input.BtnPress = null;
 
-        Debug.Log($"Stop Read Input {inputName}, OnPress {onPress}");
+        Debug.Log($"Stop Read Input {inputName} OnPress");
+    }*/
+
+    public void StopReadAllInput()
+    {
+        for (int i = 0; i < 3; i++) 
+        {
+            buttonsInputs[i].BtnTap = null;
+            buttonsInputs[i].BtnPress = null;
+        }
+
+        Debug.Log($"Stop All Read Input");
     }
 }
 

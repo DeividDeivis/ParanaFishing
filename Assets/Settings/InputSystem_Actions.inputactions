@@ -212,6 +212,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "System",
+            "id": "ae332603-a25e-4b00-aa70-af216b1866b2",
+            "actions": [
+                {
+                    "name": "Reload Game",
+                    "type": "Button",
+                    "id": "4554a31c-db1e-4371-98b6-57c200ea515e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quit Game",
+                    "type": "Button",
+                    "id": "a4049b37-0839-4a7f-a2c2-01fd7f5050b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ca0bef6-c052-4565-b574-575122c40b27",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Reload Game",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8401e3f-ce72-4020-8c83-ad8dfa2b4edf",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit Game",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

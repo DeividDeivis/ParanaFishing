@@ -6,9 +6,9 @@ public class PlaceMenuUI : UISection
 {
     [SerializeField] private Image m_BG;
 
-    public override void OnSectionIN()
+    public override void OnSectionIN(bool anim)
     {
-        base.OnSectionIN();
+        base.OnSectionIN(true);
     }
 
     public override void OnSectionOUT()

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Mojarra
   m_EditorClassIdentifier: 
-  _sprite: {fileID: -6295677708421135333, guid: 722b11cbfd42b9945bbaac4960143092, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 7e596cbfcb217a24eb318126f8dc8cb8, type: 3}
   _name: Mojarra
+  _rarity: 1
+  _spritesAnim:
+  - {fileID: 21300000, guid: 722b11cbfd42b9945bbaac4960143092, type: 3}
+  - {fileID: 21300000, guid: d0877de7120493d4eac848a1b10ee585, type: 3}
+  - {fileID: 21300000, guid: 04473f9a897740c43a11a9d55ff8c421, type: 3}
   _chanceToAppearInGroup: 50
-  _baitsModify:
-  - _bait: 0
-    _chanceModify: 10

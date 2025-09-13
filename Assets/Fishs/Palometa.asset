@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Palometa
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 3902053061258852300, guid: 8019f662768a2c64eb9beedfa326e8dc, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 60077cb1804be2042913cff6ef37db77, type: 3}
   _name: Palometa
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 2
+  _spritesAnim:
+  - {fileID: 21300000, guid: 8019f662768a2c64eb9beedfa326e8dc, type: 3}
+  - {fileID: 21300000, guid: 108cf2415c46e314fa3671a8089cdc64, type: 3}
+  - {fileID: 21300000, guid: 34cb62d8033fe5a4f9c8b25e7bb2112e, type: 3}
+  _chanceToAppearInGroup: 30

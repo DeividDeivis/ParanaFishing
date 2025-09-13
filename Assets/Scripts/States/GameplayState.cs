@@ -32,12 +32,7 @@ public class GameplayState : State, IState
 
     public override void OnStateExit()
     {
-        InputManager._.StopReadInput("Interact", SubStateInteractTap);
-        InputManager._.StopReadInput("Interact", SubStateInteractPress);
-        InputManager._.StopReadInput("Left", SubStateLeftTap);
-        InputManager._.StopReadInput("Left", SubStateLeftPress);
-        InputManager._.StopReadInput("Right", SubStateRightTap);
-        InputManager._.StopReadInput("Right", SubStateRightPress);
+        InputManager._.StopReadAllInput();
 
         SubState.NextSubState -= SetSubState;
 

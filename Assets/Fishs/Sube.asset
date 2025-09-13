@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Sube
   m_EditorClassIdentifier: 
-  _sprite: {fileID: -4743730473268913974, guid: 4a070b467fbcc854eadf376ea03e7c89, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 4a070b467fbcc854eadf376ea03e7c89, type: 3}
   _name: Sube
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 0
+  _spritesAnim:
+  - {fileID: -1722547143430627174, guid: c782de47c08b42845a9f4d68efcc18f9, type: 3}
+  _chanceToAppearInGroup: 30

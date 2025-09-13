@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Surubi
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 6485599727433098820, guid: 27da1d8a3742d8c44bd87b18a3232ae2, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 17572a82fd0edf44d9096d37d94ee57c, type: 3}
   _name: Surubi
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 1
+  _spritesAnim:
+  - {fileID: 21300000, guid: 27da1d8a3742d8c44bd87b18a3232ae2, type: 3}
+  - {fileID: 21300000, guid: d0cd41f06046d4f408f1d5c7795a63ae, type: 3}
+  - {fileID: 21300000, guid: 897f058322f8926429e46bbe2d44b190, type: 3}
+  _chanceToAppearInGroup: 50

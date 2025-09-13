@@ -16,7 +16,7 @@ public class MoveSubState : SubState
 
     public override void SetSubState()
     {
-        player = FishingSystem.instance.transform;
+        player = FishingSystem.instance.pivot.transform;
         rotationSpeed = GameManager.instance.Settings.RotationSpeed;
         rotationAngle = GameManager.instance.Settings.MaxRotationAngle;
         rightPress = false;

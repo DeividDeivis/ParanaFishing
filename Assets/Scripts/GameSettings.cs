@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,4 +42,19 @@ public class GameSettings : ScriptableObject
     [Header("Fish Settings List")]
     [SerializeField] private List<FishInfo> fishesInGame;
     public List<FishInfo> FishesInfo => fishesInGame;
+
+    [Header("Baits Settings List")]
+    [SerializeField] private List<BaitInfo> baitsInGame;
+    public List<BaitInfo> BaitsInGame => baitsInGame;
+
+    [Header("Rarity Settings List")]
+    [SerializeField] private List<RarityInfo> rarityInfos;
+    public List<RarityInfo> RarityInfos => rarityInfos;
+}
+
+[Serializable]
+public class RarityInfo 
+{
+    public RarityType rarity;
+    public int points;
 }

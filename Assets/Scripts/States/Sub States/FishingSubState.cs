@@ -1,5 +1,6 @@
-using UnityEngine;
+using DG.Tweening;
 using System.Collections;
+using UnityEngine;
 
 public class FishingSubState : SubState
 {
@@ -22,6 +23,8 @@ public class FishingSubState : SubState
         fishingSystem.CatchFishMiniGame();
 
         AudioManager.instance.SetMusicState(2);
+
+        fishingSystem.Inv.OnFishComplete += CompleteInventory;
     }
 
     public override void OnInteractTap()
@@ -31,14 +34,18 @@ public class FishingSubState : SubState
 
     public override void OnLeftTap()
     {
-        // Go to menu
+        // Save Fish
+        fishingSystem.Inv.AddFish(fishingSystem.fishCatched);
+        fishingSystem.ResetFish();
         _ui.GetComponent<FishingGameUI>().HideMessages();
-        GameManager.instance.States.SetState(new MenuState());
+        if(!fishingSystem.Inv.Complete())
+            NextSubState.Invoke(new MoveSubState(_ui));
     }
 
     public override void OnRightTap()
     {
-        // Continue fishing
+        // Drop Fish
+        fishingSystem.ResetFish();
         _ui.GetComponent<FishingGameUI>().HideMessages();
         NextSubState.Invoke(new MoveSubState(_ui));
     }
@@ -58,6 +65,8 @@ public class FishingSubState : SubState
             Debug.Log("WIN");
             var fishGroup = GameObject.FindFirstObjectByType<FishGroupController>();
             var fish = fishGroup.GetRandomFish();
+
+            fishingSystem.fishCatched = fish;
             _ui.GetComponent<FishingGameUI>().ShowFishInfo(fish);
 
             AudioManager.instance.SetMusicState(3);
@@ -71,5 +80,14 @@ public class FishingSubState : SubState
         }
 
         fishingComplete = true;
+    }
+
+    public void CompleteInventory() 
+    {
+        fishingSystem.ResetFish();
+        _ui.GetComponent<FishingGameUI>().HideMessages();
+        InputManager._.StopReadAllInput();
+        GameManager.instance.States.SetState(new ScoreState());
+        AudioManager.instance.PlaySfx("Select");
     }
 }

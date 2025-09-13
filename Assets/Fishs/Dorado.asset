@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Dorado
   m_EditorClassIdentifier: 
-  _sprite: {fileID: -8084294568269478967, guid: 28be3420fecf118469fd4691468f970a, type: 3}
+  _spriteInv: {fileID: 21300000, guid: e62ac44b8ca9b104c880f43e680548fb, type: 3}
   _name: Dorado
+  _rarity: 1
+  _spritesAnim:
+  - {fileID: 21300000, guid: 28be3420fecf118469fd4691468f970a, type: 3}
+  - {fileID: 21300000, guid: 0391a9e26b1f8354a913897bba691210, type: 3}
+  - {fileID: 21300000, guid: db6c49eefa264b54f854c5222bfddd0b, type: 3}
   _chanceToAppearInGroup: 40
-  _baitsModify:
-  - _bait: 0
-    _chanceModify: 10

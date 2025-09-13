@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<UIController>();
-                DontDestroyOnLoad(_instance.gameObject);
+                //DontDestroyOnLoad(_instance.gameObject);
             }
             return _instance;
         }

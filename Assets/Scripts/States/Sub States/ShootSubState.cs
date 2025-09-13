@@ -29,6 +29,7 @@ public class ShootSubState : SubState
     {
         FishingSystem.OnBaitInWater -= BaitInWater;
         _ui.GetComponent<FishingGameUI>().SetPowerBar(0);
+        _ui.GetComponent<FishingGameUI>().SplashAnim();
         NextSubState.Invoke(new WaitSubState(_ui));
     }
 }

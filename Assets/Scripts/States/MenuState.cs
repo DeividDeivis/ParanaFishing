@@ -6,7 +6,7 @@ public class MenuState : State, IState
     public override void OnStateEnter()
     {
         _UI = UIController.instance.GetUI("Menu");
-        _UI.OnSectionIN();
+        _UI.OnSectionIN(true);
 
         InputManager._.StartReadInput("Interact", StartGame);
 
@@ -22,13 +22,14 @@ public class MenuState : State, IState
 
     public override void OnStateExit()
     {
-        InputManager._.StopReadInput("Interact", StartGame);
         _UI.OnSectionOUT();
     }
 
     private void StartGame() 
     {
+        InputManager._.StopReadAllInput();
         GameManager.instance.States.SetState(new PlaceSelectionState());
+        //GameManager.instance.States.SetState(new GameplayState()); //Debug
         AudioManager.instance.PlaySfx("Select");
     }
 }

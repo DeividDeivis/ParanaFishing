@@ -5,25 +5,29 @@ using UnityEngine.UI;
 
 public class MainMenuUI : UISection
 {
-    [SerializeField] private Image m_BG;
     [SerializeField] private TextMeshProUGUI m_Title;
     [SerializeField] private TextMeshProUGUI m_StartGame;
 
-    public override void OnSectionIN()
+    public override void OnSectionIN(bool anim)
     {
         m_Title.color = new Color(m_Title.color.r, m_Title.color.g, m_Title.color.b, 0f);
         m_StartGame.color = new Color(m_StartGame.color.r, m_StartGame.color.g, m_StartGame.color.b, 0f);
-        base.OnSectionIN();
-        uiAnim = DOTween.Sequence().SetEase(Ease.Linear)
-            .Append(m_Title.transform.DOScale(Vector3.one * 1.3f, .25f))
-            .Join(m_Title.DOFade(1, .25f))
-            .Append(m_Title.transform.DOScale(Vector3.one, .25f))
-            .Append(m_StartGame.DOFade(1, 2).SetDelay(1).SetLoops(-1, LoopType.Yoyo));
+        base.OnSectionIN(true);
+        OnSectionAnimFinish += MenuAnim;
     }
 
     public override void OnSectionOUT()
     {
         uiAnim.Kill();
         base.OnSectionOUT();
+    }
+
+    private void MenuAnim() 
+    {
+        uiAnim = DOTween.Sequence().SetEase(Ease.Linear)
+            .Append(m_Title.transform.DOScale(Vector3.one * 1.3f, .25f))
+            .Join(m_Title.DOFade(1, .25f))
+            .Append(m_Title.transform.DOScale(Vector3.one, .25f))
+            .Append(m_StartGame.DOFade(1, 2).SetDelay(1).SetLoops(-1, LoopType.Yoyo));
     }
 }

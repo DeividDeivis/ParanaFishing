@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Armado
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 3454788413190898089, guid: 54b033d08da287446adf6e261b8e42b1, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 0b111afbbf405b548b7820a10b78315c, type: 3}
   _name: Armado
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 1
+  _spritesAnim:
+  - {fileID: 21300000, guid: 54b033d08da287446adf6e261b8e42b1, type: 3}
+  - {fileID: 21300000, guid: d972932671343384d87b2d7d5729bb3c, type: 3}
+  - {fileID: 21300000, guid: d13f9b653b5ed5a438bb581c7c5eef2a, type: 3}
+  _chanceToAppearInGroup: 50

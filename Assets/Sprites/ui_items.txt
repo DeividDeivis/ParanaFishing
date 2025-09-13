@@ -1,0 +1,13 @@
+trash:
+- sube
+- libro mojado
+- "azucar"
+
+jam:
+- rgd simulator
+- barranco jump
+- loro
+- compras rosarinas
+- hospitales
+- amargo obrero (frasco de propinas)
+- monumento drop (pedazo de monumento)

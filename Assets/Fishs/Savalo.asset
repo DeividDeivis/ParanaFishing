@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2360fe1884a29c4095fe9f044fa319f, type: 3}
   m_Name: Savalo
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 2524241679747285842, guid: 9745e295c9118294a94a3a51ee0c42bf, type: 3}
+  _spriteInv: {fileID: 21300000, guid: 2182298524a638f4589cd19c428c390e, type: 3}
   _name: Sabalo
-  _chanceToAppearInGroup: 0
-  _baitsModify: []
+  _rarity: 1
+  _spritesAnim:
+  - {fileID: 21300000, guid: 2f8c6418adea1954a8505694cfb01a97, type: 3}
+  - {fileID: 21300000, guid: 9745e295c9118294a94a3a51ee0c42bf, type: 3}
+  - {fileID: 21300000, guid: 85f6f6247be6db342a967b2b76b22762, type: 3}
+  _chanceToAppearInGroup: 50
