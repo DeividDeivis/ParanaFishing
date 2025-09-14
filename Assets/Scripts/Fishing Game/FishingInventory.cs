@@ -51,7 +51,11 @@ public class FishingInventory : MonoBehaviour
 
     public void AddFish(FishInfo newFish)
     {
-        m_FishObtained.Add(new FishObtainedInfo(newFish));
+        FishObtainedInfo fish = new FishObtainedInfo(newFish);
+        RarityInfo rarityInfo = GameManager.instance.Settings.RarityInfos.First(x => x.rarity == newFish._Rarity);
+        fish.SetPoints(rarityInfo.points);
+        m_FishObtained.Add(fish);
+
 
         if (m_FishObtained.Count < maxFish)        
             OnFishModify?.Invoke(m_FishObtained);       

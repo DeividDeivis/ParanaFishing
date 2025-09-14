@@ -48,7 +48,8 @@ public class AnimationSystem : MonoBehaviour
 
     public void StopAnim()
     {
-        StopCoroutine(_animation);
+        if(_animation != null)
+            StopCoroutine(_animation);
     }
 
     public void SetGraph(Vector3 newPos, FishInfo info) 
