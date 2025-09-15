@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 public class FishingSystem : MonoBehaviour
 {
     public Transform pivot;
+    private Vector3 initPos;
+    private Quaternion initRot;
     private FishingRodController m_Rod;
     private float minFishingRange;
     private float maxFishingRange;
@@ -48,6 +50,9 @@ public class FishingSystem : MonoBehaviour
 
     private void Awake()
     {
+        initPos = pivot.position;
+        initRot = pivot.rotation;
+
         minFishingRange = GameManager.instance.Settings.MinShootRange;
         maxFishingRange = GameManager.instance.Settings.MaxShootRange;
         shootSpeed = GameManager.instance.Settings.PowerBarSpeed;
@@ -190,13 +195,23 @@ public class FishingSystem : MonoBehaviour
 
         m_Rod.ReturnBait();
 
-        fishGraph.SetGraph(m_Rod.GetBaitPos(), fishCatched);
-        fishGraph.JumpAnim();
+        if (fishCatched != null) 
+        {
+            fishGraph.SetGraph(m_Rod.GetBaitPos(), fishCatched);
+            fishGraph.JumpAnim();
+        }     
     }
 
     public void ResetFish() 
     {
         fishGraph.transform.position += new Vector3(0, 0, 10);
         fishGraph.StopAnim();
+        fishCatched = null;
+    }
+
+    public void ResetPlayer() 
+    {
+        pivot.position = initPos;
+        pivot.rotation = initRot;
     }
 }

@@ -30,12 +30,6 @@ public class MoveSubState : SubState
     {
         if (shoot) return;
 
-        // Mathf.Clamp() don`t found with Rotate()
-        /*if (leftPress)
-            player.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.Self);
-        else if (rightPress)
-            player.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.Self);*/
-
         if (leftPress)
             player.eulerAngles -= new Vector3(0, rotationSpeed * Time.deltaTime, 0);
         else if (rightPress)
@@ -43,8 +37,7 @@ public class MoveSubState : SubState
 
         if (leftPress || rightPress) 
         {          
-            float YRot = Mathf.Clamp(player.eulerAngles.y, 180 - rotationAngle, 180 + rotationAngle);
-            //Debug.Log($"Local Euler: {player.localEulerAngles.y}, Rotation {player.transform.rotation.y}, Clamp Rot: {YRot}");
+            float YRot = Mathf.Clamp(player.eulerAngles.y, 180 - rotationAngle, 180 + rotationAngle);     
             player.eulerAngles = new Vector3(0, YRot, 0);
         }     
     }

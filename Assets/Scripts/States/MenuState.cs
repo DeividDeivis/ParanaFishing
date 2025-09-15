@@ -13,6 +13,7 @@ public class MenuState : State, IState
         AudioManager.instance.SetMusicState(0);
 
         FishingSystem.instance.HideRod();
+        FishingSystem.instance.ResetPlayer();
     }
 
     public override void OnStateUpdate()
