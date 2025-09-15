@@ -44,12 +44,14 @@ public class MoveSubState : SubState
 
     public override void OnLeftPress(bool isPressed)
     {
-        leftPress = isPressed;
+        if(!shoot)
+            leftPress = isPressed;
     }
 
     public override void OnRightPress(bool isPressed)
     {
-        rightPress = isPressed;
+        if (!shoot)
+            rightPress = isPressed;
     }
 
     public override void OnInteractPress(bool isPressed)

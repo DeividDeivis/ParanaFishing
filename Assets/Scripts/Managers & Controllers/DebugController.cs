@@ -20,7 +20,7 @@ public class DebugController : MonoBehaviour
     private void ReloadGame(bool press) 
     {
         if (press)
-            counter = StartCoroutine(Count(() => SceneManager.LoadScene(0)));
+            counter = StartCoroutine(Count(ReloadGameScene));
         else
             StopCoroutine(counter);    
     }
@@ -42,5 +42,22 @@ public class DebugController : MonoBehaviour
             yield return null;
         }
         onComplete?.Invoke();
+    }
+
+    private void ReloadGameScene() 
+    {
+        InputManager._.StopReadAllInput();
+        AudioManager.instance.StopBGMusic();
+        StartCoroutine(ReloadAsyncScene());
+    }
+
+    private IEnumerator ReloadAsyncScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(0);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

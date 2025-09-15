@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     void OnDisable()
     {
         /// Disable actions as part of disabling this behavior.
-        m_Inputs.Disable();
+        m_Inputs.Disable();      
     }
 
     #region Singleton
@@ -81,14 +81,6 @@ public class InputManager : MonoBehaviour
 
         Debug.Log($"Start Read Input {inputName}, OnPress {onPress}");
     }
-
-    /*public void StopReadInput(string inputName)
-    {
-        var input = buttonsInputs.First(btn => btn.BtnName == inputName);
-        input.BtnPress = null;
-
-        Debug.Log($"Stop Read Input {inputName} OnPress");
-    }*/
 
     public void StopReadAllInput()
     {

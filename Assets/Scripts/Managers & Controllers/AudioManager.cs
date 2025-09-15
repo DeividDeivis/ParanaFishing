@@ -35,6 +35,7 @@ public class AudioManager : MonoBehaviour
         musicState = RuntimeManager.CreateInstance(BGMusicEvent);
         musicState.start();
     }
+
     public void SetMusicState(int value)
     {
         //musicState.setParameterByName("Scene", value); // Local Parameter
@@ -43,6 +44,12 @@ public class AudioManager : MonoBehaviour
         float currentValue = 0;
         RuntimeManager.StudioSystem.getParameterByName("Scene", out currentValue);
         Debug.Log($"<color=cyan>Music Parameter change to: {currentValue}</color>");
+    }
+
+    public void StopBGMusic()
+    {
+        musicState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicState.release();
     }
     #endregion
 

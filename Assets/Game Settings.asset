@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b238d0e4fcd6ed4282942436e981138, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  playerRotationSpeed: 50
+  playerRotationSpeed: 30
   maxRotationAngle: 80
   initialPlayerPos: 2.5
   finishPlayerPos: 1

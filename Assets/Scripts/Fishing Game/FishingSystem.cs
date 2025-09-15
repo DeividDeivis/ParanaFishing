@@ -50,7 +50,7 @@ public class FishingSystem : MonoBehaviour
 
     private void Awake()
     {
-        initPos = pivot.position;
+        initPos = transform.position;
         initRot = pivot.rotation;
 
         minFishingRange = GameManager.instance.Settings.MinShootRange;
@@ -211,7 +211,7 @@ public class FishingSystem : MonoBehaviour
 
     public void ResetPlayer() 
     {
-        pivot.position = initPos;
         pivot.rotation = initRot;
+        transform.position = initPos;
     }
 }
