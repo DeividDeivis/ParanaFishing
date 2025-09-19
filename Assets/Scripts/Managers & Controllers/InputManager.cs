@@ -51,6 +51,7 @@ public class InputManager : MonoBehaviour
 
         buttonsInputs.Add(new ButtonInfo("Reload", m_Inputs.System.ReloadGame));
         buttonsInputs.Add(new ButtonInfo("Quit", m_Inputs.System.QuitGame));
+        buttonsInputs.Add(new ButtonInfo("Simulate", m_Inputs.System.SimulateShoot));
     }
 
 

@@ -320,6 +320,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SimulateShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cf67e22-28fd-4e09-bc77-d81d22e8999a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -342,6 +351,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit Game"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dc4ec59-dec4-4ed2-9c61-fc1ce90f5d93"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SimulateShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -420,6 +440,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_ReloadGame = m_System.FindAction("Reload Game", throwIfNotFound: true);
         m_System_QuitGame = m_System.FindAction("Quit Game", throwIfNotFound: true);
+        m_System_SimulateShoot = m_System.FindAction("SimulateShoot", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -621,6 +642,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<ISystemActions> m_SystemActionsCallbackInterfaces = new List<ISystemActions>();
     private readonly InputAction m_System_ReloadGame;
     private readonly InputAction m_System_QuitGame;
+    private readonly InputAction m_System_SimulateShoot;
     /// <summary>
     /// Provides access to input actions defined in input action map "System".
     /// </summary>
@@ -640,6 +662,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "System/QuitGame".
         /// </summary>
         public InputAction @QuitGame => m_Wrapper.m_System_QuitGame;
+        /// <summary>
+        /// Provides access to the underlying input action "System/SimulateShoot".
+        /// </summary>
+        public InputAction @SimulateShoot => m_Wrapper.m_System_SimulateShoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -672,6 +698,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuitGame.started += instance.OnQuitGame;
             @QuitGame.performed += instance.OnQuitGame;
             @QuitGame.canceled += instance.OnQuitGame;
+            @SimulateShoot.started += instance.OnSimulateShoot;
+            @SimulateShoot.performed += instance.OnSimulateShoot;
+            @SimulateShoot.canceled += instance.OnSimulateShoot;
         }
 
         /// <summary>
@@ -689,6 +718,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuitGame.started -= instance.OnQuitGame;
             @QuitGame.performed -= instance.OnQuitGame;
             @QuitGame.canceled -= instance.OnQuitGame;
+            @SimulateShoot.started -= instance.OnSimulateShoot;
+            @SimulateShoot.performed -= instance.OnSimulateShoot;
+            @SimulateShoot.canceled -= instance.OnSimulateShoot;
         }
 
         /// <summary>
@@ -837,5 +869,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuitGame(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SimulateShoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSimulateShoot(InputAction.CallbackContext context);
     }
 }

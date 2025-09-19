@@ -7,6 +7,7 @@ public class MainMenuUI : UISection
 {
     [SerializeField] private TextMeshProUGUI m_Title;
     [SerializeField] private TextMeshProUGUI m_StartGame;
+    [SerializeField] private float m_AnimDelay = 1.0f;
 
     public override void OnSectionIN(bool anim)
     {
@@ -24,7 +25,7 @@ public class MainMenuUI : UISection
 
     private void MenuAnim() 
     {
-        uiAnim = DOTween.Sequence().SetEase(Ease.Linear)
+        uiAnim = DOTween.Sequence().SetEase(Ease.Linear).SetDelay(m_AnimDelay)
             .Append(m_Title.transform.DOScale(Vector3.one * 1.3f, .25f))
             .Join(m_Title.DOFade(1, .25f))
             .Append(m_Title.transform.DOScale(Vector3.one, .25f))

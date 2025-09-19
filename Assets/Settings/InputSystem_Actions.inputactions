@@ -234,6 +234,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SimulateShoot",
+                    "type": "Button",
+                    "id": "4cf67e22-28fd-4e09-bc77-d81d22e8999a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -256,6 +265,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit Game",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3dc4ec59-dec4-4ed2-9c61-fc1ce90f5d93",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SimulateShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

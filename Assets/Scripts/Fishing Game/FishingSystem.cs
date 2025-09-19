@@ -204,7 +204,7 @@ public class FishingSystem : MonoBehaviour
 
     public void ResetFish() 
     {
-        fishGraph.transform.position += new Vector3(0, 0, 10);
+        fishGraph.transform.position = new Vector3(0, 0, 10);
         fishGraph.StopAnim();
         fishCatched = null;
     }
@@ -214,4 +214,24 @@ public class FishingSystem : MonoBehaviour
         pivot.rotation = initRot;
         transform.position = initPos;
     }
+
+#if UNITY_EDITOR
+    public IEnumerator SimulateShoot()
+    {
+        Debug.Log("Simulate Shhot");
+        float diff = maxFishingRange - minFishingRange;
+        float distance = minFishingRange + (diff * 1);
+        m_Rod.ShootBait(distance);
+
+        yield return new WaitForSeconds(3);
+
+        m_Rod.ReturnBait();
+
+        if (fishCatched != null)
+        {
+            fishGraph.SetGraph(m_Rod.GetBaitPos(), fishCatched);
+            fishGraph.JumpAnim();
+        }
+    }
+#endif
 }

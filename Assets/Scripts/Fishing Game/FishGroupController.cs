@@ -46,4 +46,12 @@ public class FishGroupController : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, fishInGroup.Count);
         return fishInGroup[randomIndex];
     }
+
+#if UNITY_EDITOR
+    public FishInfo GetFishByIndex(int index) 
+    {
+        return fishInGroup[index];
+    }
+    public int FishAmount() { return fishInGroup.Count; }
+#endif
 }

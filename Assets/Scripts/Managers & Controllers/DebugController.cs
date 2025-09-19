@@ -8,12 +8,19 @@ public class DebugController : MonoBehaviour
     [SerializeField] private float pressTime = 2f;
     private Coroutine counter;
 
+#if UNITY_EDITOR
+    private int debugFishIndex = 0;
+#endif
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InputManager._.StartReadInput("Reload", ReloadGame);
 #if UNITY_STANDALONE_WIN
         InputManager._.StartReadInput("Quit", ExitGame);
+#endif
+#if UNITY_EDITOR
+        InputManager._.StartReadInput("Simulate", SimulateShoot);
 #endif
     }
 
@@ -59,5 +66,20 @@ public class DebugController : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    private void SimulateShoot() 
+    {
+        var fishGroup = GameObject.FindFirstObjectByType<FishGroupController>(FindObjectsInactive.Exclude);
+        var fish = fishGroup.GetFishByIndex(debugFishIndex);
+
+        FishingSystem.instance.ResetFish();
+        FishingSystem.instance.fishCatched = fish;
+
+        debugFishIndex++;
+        if (debugFishIndex >= fishGroup.FishAmount())
+            debugFishIndex = 0;
+
+        StartCoroutine(FishingSystem.instance.SimulateShoot()); 
     }
 }
